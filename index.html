@@ -9,11 +9,19 @@
 </head>
 <body>
     <div class="paint-modes">
-        <input type="radio" id ="hover-mode" name="selected-mode" checked="checked">
-        <label for="hover-mode">Hover</label>
-
-        <input type="radio" id ="click-mode" name="selected-mode">
+        <input type="radio" id ="click-mode" name="selected-mode" checked="checked">
         <label for="click-mode">Click</label>
+
+        <input type="radio" id ="hover-mode" name="selected-mode">
+        <label for="hover-mode">Hover</label>
+    </div>
+    <div class="form-container">
+        <form class="size-form">
+            <label for="square-size">Pixels per side:</label>
+            <input type="text" id="square-size" name="square-size">
+            <input type="submit" value="Change">
+        </form>
+        <p class="alert">(Chaning size deletes current art!)</p>
     </div>
     <div class="square-container"></div>
 </body>

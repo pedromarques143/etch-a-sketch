@@ -7,10 +7,25 @@ body {
 }
 
 .paint-modes {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
 }
 
 .square-container {
     display: flex;
     gap: 0px;
+
+}
+
+form {
+    margin-bottom: 2px;
+}
+
+.alert {
+    margin-top: 5px;
+    font-size: small;
+    text-align: center;
+}
+
+#square-size {
+    width: 25px;
 }
