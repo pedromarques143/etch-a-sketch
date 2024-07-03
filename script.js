@@ -9,6 +9,7 @@ let allModesArr = document.querySelectorAll("input[name='selected-mode']");
 
 let stopClick = false;
 let stopHover = true;
+let randomMode = false;
 
 //default size
 createBoard(16);
@@ -54,6 +55,8 @@ randomColorSquare.textContent = "RANDOM";
 randomColorSquare.style.fontSize = "10px"
 randomColorSquare.style.textAlign = "center";
 
+
+//color picker
 for (let square of colorSquareArr) {
     square.addEventListener("click", () => {
         selectedColor = square.style.backgroundColor;
@@ -61,8 +64,9 @@ for (let square of colorSquareArr) {
 }
 
 randomColorSquare.addEventListener("click", () => {
-    selectedColor = "black";
+    randomMode = true;
 })
+
 
 //function declarations
 function createBoard(number) {
@@ -129,6 +133,11 @@ function boardReset() {
 
 function squareClick(element) {
     element.addEventListener("click", () => {
+        if (randomMode) {
+            let randomColorNumber = Math.floor(Math.random() * 15);
+            selectedColor = COLORPALLETE[randomColorNumber];
+        }
+        
         if (!stopClick) {
             element.style.backgroundColor = selectedColor;
         }
@@ -138,6 +147,11 @@ function squareClick(element) {
 
 function squareHover(element) {
     element.addEventListener("mouseover", () => {
+        if (randomMode) {
+            let randomColorNumber = Math.floor(Math.random() * 15);
+            selectedColor = COLORPALLETE[randomColorNumber];
+        }
+
         if (!stopHover) {
             element.style.backgroundColor = selectedColor;
         }
@@ -148,7 +162,9 @@ function squareHover(element) {
 
 
 
+
 //TO DO
 //add color selection
 //create oppacity
 //create random
+
