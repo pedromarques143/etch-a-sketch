@@ -2,7 +2,7 @@ const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
 const COLORPALLETE = ["white", "pink", "red", "green", "blue", "yellow", "purple", "brown", "black", "orange", "gray", "#FF00FF", "#32CD32", "#66CDAA", "#D2691E", "white"];
 let selectedColor = "black";
-
+let colorOpacity = 100;
 
 let containerSize;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
@@ -67,6 +67,12 @@ randomColorSquare.addEventListener("click", () => {
     randomMode = true;
 })
 
+//opacity slider
+let colorOpacitySlider = document.querySelector("input[type='range']");
+
+colorOpacitySlider.addEventListener("change", () => {
+    colorOpacity = Number(colorOpacitySlider.value);
+})
 
 //function declarations
 function createBoard(number) {
@@ -123,7 +129,7 @@ function boardReset() {
         if (inputValue <= 100 && inputValue > 0 && typeof inputValue == "number") {
             containerSize = inputValue;
             squareContainer.innerHTML = "";
-            createBoard(containerSize);                
+            createBoard(containerSize);         
         } else {
             alert("Enter a number between 1 and 100!");   
         }       
