@@ -97,3 +97,5 @@ function squareHover(element) {
 
 //TO DO
 //add color selection
+//create oppacity
+//create random
