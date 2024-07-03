@@ -1,5 +1,8 @@
 const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
+const COLORPALLETE = ["white", "pink", "red", "green", "blue", "yellow", "purple", "brown", "black", "orange", "gray", "#FF00FF", "#32CD32", "#66CDAA", "#D2691E", "white"];
+let selectedColor = "black";
+
 
 let containerSize;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
@@ -17,19 +20,49 @@ const colorContainer = document.querySelector(".color-container");
 for (let i = 0; i < 8; i++) {
     let colorLine = document.createElement("div");
     colorContainer.appendChild(colorLine);
-    for (let x = 0; x < 2; x++) {
+    for (let x = 1; x < 2; x++) {
         let colorSquare = document.createElement("div");
         colorSquare.className = "color-square";
         colorSquare.style.width = `${SQUARELEN / 8 - 1}px`;
         colorSquare.style.height = `${SQUARELEN / 8 - 1}px`;
         colorSquare.style.marginTop = "-1px";
         colorSquare.style.marginLeft = "-1px";
-        colorSquare.style.backgroundColor = "white";
+        colorSquare.style.backgroundColor = COLORPALLETE[i * x];
+        colorSquare.style.borderStyle = "solid";
+        colorSquare.style.borderWidth = "1px";
+        colorLine.appendChild(colorSquare);
+    }
+
+    for (let x = 1; x < 2; x++) {
+        let colorSquare = document.createElement("div");
+        colorSquare.className = "color-square";
+        colorSquare.style.width = `${SQUARELEN / 8 - 1}px`;
+        colorSquare.style.height = `${SQUARELEN / 8 - 1}px`;
+        colorSquare.style.marginTop = "-1px";
+        colorSquare.style.marginLeft = "-1px";
+        colorSquare.style.backgroundColor = COLORPALLETE[(i + 8) * x];
         colorSquare.style.borderStyle = "solid";
         colorSquare.style.borderWidth = "1px";
         colorLine.appendChild(colorSquare);
     }
 }
+
+let colorSquareArr = document.querySelectorAll(".color-square");
+
+let randomColorSquare = colorSquareArr[colorSquareArr.length - 1];
+randomColorSquare.textContent = "RANDOM";
+randomColorSquare.style.fontSize = "10px"
+randomColorSquare.style.textAlign = "center";
+
+for (let square of colorSquareArr) {
+    square.addEventListener("click", () => {
+        selectedColor = square.style.backgroundColor;
+    })   
+}
+
+randomColorSquare.addEventListener("click", () => {
+    selectedColor = "black";
+})
 
 //function declarations
 function createBoard(number) {
@@ -97,7 +130,7 @@ function boardReset() {
 function squareClick(element) {
     element.addEventListener("click", () => {
         if (!stopClick) {
-            element.style.backgroundColor = "black";
+            element.style.backgroundColor = selectedColor;
         }
     });
 }
@@ -106,7 +139,7 @@ function squareClick(element) {
 function squareHover(element) {
     element.addEventListener("mouseover", () => {
         if (!stopHover) {
-            element.style.backgroundColor = "black";
+            element.style.backgroundColor = selectedColor;
         }
     });
 }
