@@ -132,7 +132,9 @@ function boardReset() {
             createBoard(containerSize);         
         } else {
             alert("Enter a number between 1 and 100!");   
-        }       
+        } 
+        document.getElementById("click-mode").checked = true;
+        stopClick = false;        
     });
 }
 
@@ -168,9 +170,6 @@ function squareHover(element) {
 
 
 
-
 //TO DO
-//add color selection
-//create oppacity
-//create random
+//FIX bug after boardReset
 
