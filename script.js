@@ -1,4 +1,5 @@
 const squareContainer = document.querySelector(".square-container");
+const SQUARELEN = 400;
 
 let containerSize;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
@@ -11,10 +12,28 @@ createBoard(16);
 boardReset();
 
 //color pallete
+const colorContainer = document.querySelector(".color-container");
+
+for (let i = 0; i < 8; i++) {
+    let colorLine = document.createElement("div");
+    colorContainer.appendChild(colorLine);
+    for (let x = 0; x < 2; x++) {
+        let colorSquare = document.createElement("div");
+        colorSquare.className = "color-square";
+        colorSquare.style.width = `${SQUARELEN / 8 - 1}px`;
+        colorSquare.style.height = `${SQUARELEN / 8 - 1}px`;
+        colorSquare.style.marginTop = "-1px";
+        colorSquare.style.marginLeft = "-1px";
+        colorSquare.style.backgroundColor = "white";
+        colorSquare.style.borderStyle = "solid";
+        colorSquare.style.borderWidth = "1px";
+        colorLine.appendChild(colorSquare);
+    }
+}
 
 //function declarations
 function createBoard(number) {
-    let squareSize = 500 / number;
+    let squareSize = SQUARELEN / number;
     for (let x = 0; x < number; x++) {
         let singleLine = document.createElement("div");
         squareContainer.appendChild(singleLine);
@@ -28,6 +47,7 @@ function createBoard(number) {
             singleSquare.style.borderWidth = "1px"
             singleSquare.style.marginTop = "-1px";
             singleSquare.style.marginLeft = "-1px";
+            singleSquare.style.backgroundColor = "white";
             singleLine.appendChild(singleSquare);                     
         }
     }

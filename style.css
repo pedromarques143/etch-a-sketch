@@ -3,7 +3,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px
+    margin-top: 70px;
+    background-color: coral;
 }
 
 .paint-modes {
@@ -13,7 +14,24 @@ body {
 .square-container {
     display: flex;
     gap: 0px;
+    border-style: solid;
+    padding: 20px;
+    border-radius: 15px;
+    border-width: 2px;
+    background-color: burlywood;
 
+}
+
+.color-container {
+    display: flex;
+    gap: 0px;
+    width: 400px;
+    margin-top: 10px;
+    border-style: solid;
+    padding: 20px;
+    border-radius: 15px;
+    border-width: 2px;
+    background-color:darkseagreen;
 }
 
 form {
