@@ -171,5 +171,5 @@ function squareHover(element) {
 
 
 //TO DO
-//FIX bug after boardReset
+//Finish opacity
 
