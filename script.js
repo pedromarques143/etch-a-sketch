@@ -2,7 +2,7 @@ const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
 const COLORPALLETE = ["white", "pink", "red", "green", "blue", "yellow", "purple", "brown", "black", "orange", "gray", "#FF00FF", "#32CD32", "#66CDAA", "#D2691E", "white"];
 let selectedColor = "black";
-let colorOpacity = 100;
+let colorOpacity = 1;
 
 let containerSize;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
@@ -71,7 +71,7 @@ randomColorSquare.addEventListener("click", () => {
 let colorOpacitySlider = document.querySelector("input[type='range']");
 
 colorOpacitySlider.addEventListener("change", () => {
-    colorOpacity = Number(colorOpacitySlider.value);
+    colorOpacity = Number(colorOpacitySlider.value) / 100;
 })
 
 //function declarations
