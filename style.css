@@ -3,11 +3,22 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 70px;
+    margin-top: 25px;
     background-color: coral;
 }
 
+h1 {
+    font-family: monospace;
+    font-size: 50px;
+}
+
+.form-container {
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
 .paint-modes {
+    margin-top: 0px;
     margin-bottom: 15px;
 }
 
@@ -15,24 +26,45 @@ body {
     display: flex;
     gap: 0px;
     border-style: solid;
-    padding: 20px;
     border-radius: 15px;
-    border-width: 2px;
-    background-color: burlywood;
-
+    border-width: 20px;
+    border-color:burlywood;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
 
 .color-container {
     display: flex;
     gap: 0px;
     width: 400px;
-    margin-top: 10px;
+    margin-top: 20px;
+    margin-bottom: 10px;
     border-style: solid;
-    padding: 20px;
     border-radius: 15px;
-    border-width: 2px;
-    background-color:darkseagreen;
+    border-width: 20px;
+    border-color:darkseagreen;
+    background-color: darkseagreen;
+    justify-content: center;
+    box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 1px, rgba(0, 0, 0, 0.07) 0px 2px 2px,
+    rgba(0, 0, 0, 0.07) 0px 4px 4px, rgba(0, 0, 0, 0.07) 0px 8px 8px,
+    rgba(0, 0, 0, 0.07) 0px 16px 16px;
 }
+
+.opacity-container {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.opacity-slider {
+    display: flex;
+    gap: 10px;
+}
+
 
 form {
     margin-bottom: 2px;
@@ -46,4 +78,24 @@ form {
 
 #square-size {
     width: 25px;
+}
+
+.opacity-check {
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0px;
+    margin-bottom: 5px;
+}
+
+.reset-button {
+    margin-top: 5px;
+}
+
+.temp-note {
+    text-align: center;
+    margin-top: 2px;
+    font-size: smaller;   
 }

@@ -1,10 +1,9 @@
 const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
-const COLORPALLETE = ["white", "pink", "red", "green", "blue", "yellow", "purple", "brown", "black", "orange", "gray", "#FF00FF", "#32CD32", "#66CDAA", "#D2691E", "white"];
+const COLORPALLETE = ["white", "#D35400", "#FF7F50", "#F39C12", "#F1C40F", "#66CDAA", "#2ECC71", "#16A085", "#3498DB", "#2980B9", "#8E44AD", "#DE3163", "#E74C3C", "#C0392B", "black", "white"];
 let selectedColor = "black";
 
 let selectedOpacity = 1;
-let previousOpacity = 0.1;
 let oppacityCheckBtn = document.querySelector("input[type='checkbox']");
 let oppacityCheck = false;
 
@@ -12,7 +11,7 @@ oppacityCheckBtn.addEventListener("change", () => {
     oppacityCheck = oppacityCheckBtn.checked ? true : false; 
 });
 
-let containerSize;
+let containerSize = 16;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
 
 let stopClick = false;
@@ -20,7 +19,7 @@ let stopHover = true;
 let randomMode = false;
 
 //default size
-createBoard(16);
+createBoard(containerSize);
 boardReset();
 
 //color pallete
@@ -62,6 +61,9 @@ let randomColorSquare = colorSquareArr[colorSquareArr.length - 1];
 randomColorSquare.textContent = "RANDOM";
 randomColorSquare.style.fontSize = "10px"
 randomColorSquare.style.textAlign = "center";
+randomColorSquare.style.display = "flex";
+randomColorSquare.style.alignItems = "center";
+randomColorSquare.style.justifyContent = "center"
 
 
 //color picker
@@ -78,10 +80,21 @@ randomColorSquare.addEventListener("click", () => {
 
 //opacity slider
 let colorOpacitySlider = document.querySelector("input[type='range']");
+let colorOpacityLevel = document.querySelector(".opacity-level");
+colorOpacityLevel.innerHTML = "100%"
 
 colorOpacitySlider.addEventListener("change", () => {
     selectedOpacity = Number(colorOpacitySlider.value) / 100;
+    colorOpacityLevel.innerHTML = `${colorOpacitySlider.value}%`
 })
+
+//reset button
+const resetButton = document.querySelector(".reset-button");
+
+resetButton.addEventListener("click", () => {
+    squareContainer.innerHTML = "";
+    createBoard(containerSize);
+});
 
 //function declarations
 function createBoard(number) {
@@ -100,6 +113,7 @@ function createBoard(number) {
             singleSquare.style.marginTop = "-1px";
             singleSquare.style.marginLeft = "-1px";
             singleSquare.style.backgroundColor = "white";
+            singleSquare.style.opacity = 1;
             singleLine.appendChild(singleSquare);                     
         }
     }
@@ -116,7 +130,7 @@ function createBoard(number) {
                     stopClick = false;
                     stopHover = true;
                     squareClick(square);                    
-                } else {
+                } else if (radio.id == "hover-mode") {
                     stopClick = true;
                     stopHover = false;
                     squareHover(square);
@@ -125,7 +139,6 @@ function createBoard(number) {
         }
     }
 }
-
 
 function boardReset() {
     const changeForm = document.querySelector(".size-form");
@@ -147,21 +160,19 @@ function boardReset() {
     });
 }
 
-
 function squareClick(element) {
     element.addEventListener("click", () => {
         if (randomMode) {
             let randomColorNumber = Math.floor(Math.random() * 15);
             selectedColor = COLORPALLETE[randomColorNumber];
         }
-        
+
         if (!stopClick) {
             element.style.backgroundColor = selectedColor;
-            element.style.opacity = selectedOpacity;           
+            element.style.opacity = selectedOpacity;                           
         }
     });
 }
-
 
 function squareHover(element) {
     element.addEventListener("mouseover", () => {
@@ -177,11 +188,6 @@ function squareHover(element) {
     });
 }
 
-
-
-
-
 //TO DO
-//Finish accumulative opacity
+//Finish accumulative opacity (oppacityCheck)
 //add click + hover function
-//fix bug after random

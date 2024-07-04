@@ -8,13 +8,7 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="paint-modes">
-        <input type="radio" id ="click-mode" name="selected-mode" checked="checked">
-        <label for="click-mode">Click</label>
-
-        <input type="radio" id ="hover-mode" name="selected-mode">
-        <label for="hover-mode">Hover</label>
-    </div>
+    <h1>PIXEL SCKETCH</h1>
     <div class="form-container">
         <form class="size-form">
             <label for="square-size">Pixels per side:</label>
@@ -23,15 +17,31 @@
         </form>
         <p class="alert">(Chaning size deletes current art!)</p>
     </div>
+    <div class="paint-modes">
+        <input type="radio" id ="click-mode" name="selected-mode" checked="checked">
+        <label for="click-mode">Click</label>
+
+        <input type="radio" id ="hover-mode" name="selected-mode">
+        <label for="hover-mode">Hover</label>
+    </div>
     <div class="square-container"></div>
     <div class="color-container"></div>
     <div class="opacity-container">
-        Opacity:
-        <br><input type="range" min="10" max="100" value="100" step="10" class="slider" id="opacity-range">
+        <div class="opacity-slider">
+            Opacity:
+            <input type="range" min="20" max="100" value="100" step="10" class="slider" id="opacity-range">
+            <div class="opacity-level"></div>
+        </div>
+        <div class="opacity-check">
+            <div>
+                <input type="checkbox" id="accumulate-opacity"> 
+                Accumulate opacity
+            </div>
+            <div class ="temp-note">(not working)</div>
+        </div>
     </div>
-    <div class="opacity-check">
-        <input type="checkbox" id="accumulate-opacity"> 
-        Accumulate opacity
+    <div>
+        <button type="button" class="reset-button">↺ Reset</button>
     </div>
 </body>
 </html>
