@@ -2,7 +2,15 @@ const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
 const COLORPALLETE = ["white", "pink", "red", "green", "blue", "yellow", "purple", "brown", "black", "orange", "gray", "#FF00FF", "#32CD32", "#66CDAA", "#D2691E", "white"];
 let selectedColor = "black";
-let colorOpacity = 100;
+
+let selectedOpacity = 1;
+let previousOpacity = 0.1;
+let oppacityCheckBtn = document.querySelector("input[type='checkbox']");
+let oppacityCheck = false;
+
+oppacityCheckBtn.addEventListener("change", () => {
+    oppacityCheck = oppacityCheckBtn.checked ? true : false; 
+});
 
 let containerSize;
 let allModesArr = document.querySelectorAll("input[name='selected-mode']");
@@ -60,6 +68,7 @@ randomColorSquare.style.textAlign = "center";
 for (let square of colorSquareArr) {
     square.addEventListener("click", () => {
         selectedColor = square.style.backgroundColor;
+        randomMode = false;
     })   
 }
 
@@ -71,7 +80,7 @@ randomColorSquare.addEventListener("click", () => {
 let colorOpacitySlider = document.querySelector("input[type='range']");
 
 colorOpacitySlider.addEventListener("change", () => {
-    colorOpacity = Number(colorOpacitySlider.value);
+    selectedOpacity = Number(colorOpacitySlider.value) / 100;
 })
 
 //function declarations
@@ -148,6 +157,7 @@ function squareClick(element) {
         
         if (!stopClick) {
             element.style.backgroundColor = selectedColor;
+            element.style.opacity = selectedOpacity;           
         }
     });
 }
@@ -162,6 +172,7 @@ function squareHover(element) {
 
         if (!stopHover) {
             element.style.backgroundColor = selectedColor;
+            element.style.opacity = selectedOpacity;
         }
     });
 }
@@ -171,5 +182,6 @@ function squareHover(element) {
 
 
 //TO DO
-//Finish opacity
-
+//Finish accumulative opacity
+//add click + hover function
+//fix bug after random
