@@ -92,6 +92,11 @@ form {
 
 .reset-button {
     margin-top: 5px;
+    border-style: solid;
+    background-color: indianred;
+    border-radius: 5px;
+    border-color: darkred;
+    color:midnightblue;
 }
 
 .temp-note {
