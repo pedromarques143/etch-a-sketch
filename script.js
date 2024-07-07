@@ -252,7 +252,5 @@ function squareClickHover(element) {
         }
     });
 }
-
 //TO DO
 //Finish accumulative opacity (oppacityCheck)
-//add click + hover function
