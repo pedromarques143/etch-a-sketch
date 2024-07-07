@@ -1,6 +1,6 @@
 const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
-const COLORPALLETE = ["#FFFFFF", "#D35400", "#FF7F50", "#F39C12", "#F1C40F", "#66CDAA", "#2ECC71", "#16A085", "#3498DB", "#2980B9", "#8E44AD", "#DE3163", "#E74C3C", "#C0392B", "black", "white"];
+const COLORPALLETE = ["#FFFFFF", "#D35400", "#FF7F50", "#F39C12", "#F1C40F", "#66CDAA", "#2ECC71", "#16A085", "#3498DB", "#2980B9", "#8E44AD", "#DE3163", "#E74C3C", "#C0392B", "#000000", "#553E93"];
 let selectedColor = "black";
 
 let selectedOpacity = 1;
@@ -16,6 +16,7 @@ let allModesArr = document.querySelectorAll("input[name='selected-mode']");
 
 let stopClick = false;
 let stopHover = true;
+let stopClickHover = false;
 let randomMode = false;
 
 //default size
@@ -59,11 +60,17 @@ let colorSquareArr = document.querySelectorAll(".color-square");
 
 let randomColorSquare = colorSquareArr[colorSquareArr.length - 1];
 randomColorSquare.textContent = "RANDOM";
+randomColorSquare.style.color = "white";
+randomColorSquare.style.borderColor = "black"
 randomColorSquare.style.fontSize = "10px"
 randomColorSquare.style.textAlign = "center";
 randomColorSquare.style.display = "flex";
 randomColorSquare.style.alignItems = "center";
-randomColorSquare.style.justifyContent = "center"
+randomColorSquare.style.justifyContent = "center";
+
+let blackColorSquare = colorSquareArr[colorSquareArr.length - 3];
+blackColorSquare.style.color = "#FFFFFF";
+blackColorSquare.style.borderColor = "black";
 
 let isColorSelected = false;
 
@@ -100,8 +107,7 @@ for (let square of colorSquareArr) {
 };
 
 randomColorSquare.addEventListener("click", () => {
-    randomMode = true;
-    
+    randomMode = true;   
 });
 
 //opacity slider
@@ -155,11 +161,18 @@ function createBoard(number) {
                 if (radio.id == "click-mode") {
                     stopClick = false;
                     stopHover = true;
+                    stopClickHover = true;
                     squareClick(square);                    
                 } else if (radio.id == "hover-mode") {
                     stopClick = true;
                     stopHover = false;
+                    stopClickHover = true;
                     squareHover(square);
+                } else if (radio.id == "click-hover-mode") {
+                    stopClick = true;
+                    stopHover = true;
+                    stopClickHover = false;
+                    squareClickHover(square);
                 }
             });
         }
@@ -210,6 +223,32 @@ function squareHover(element) {
         if (!stopHover) {
             element.style.backgroundColor = selectedColor;
             element.style.opacity = selectedOpacity;
+        }
+    });
+}
+
+let isClicked = false;
+
+function squareClickHover(element) {
+    element.addEventListener("mousedown", () => {
+        isClicked = true;
+    });
+
+    element.addEventListener("mouseup", () => {
+        isClicked = false;
+    })
+
+    element.addEventListener("mousemove", () => {
+        if (isClicked) {
+            if (randomMode) {
+                let randomColorNumber = Math.floor(Math.random() * 15);
+                selectedColor = COLORPALLETE[randomColorNumber];
+            }
+    
+            if (!stopClickHover) {
+                element.style.backgroundColor = selectedColor;
+                element.style.opacity = selectedOpacity;
+            }
         }
     });
 }
