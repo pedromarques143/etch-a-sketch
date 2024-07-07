@@ -1,6 +1,6 @@
 const squareContainer = document.querySelector(".square-container");
 const SQUARELEN = 400;
-const COLORPALLETE = ["white", "#D35400", "#FF7F50", "#F39C12", "#F1C40F", "#66CDAA", "#2ECC71", "#16A085", "#3498DB", "#2980B9", "#8E44AD", "#DE3163", "#E74C3C", "#C0392B", "black", "white"];
+const COLORPALLETE = ["#FFFFFF", "#D35400", "#FF7F50", "#F39C12", "#F1C40F", "#66CDAA", "#2ECC71", "#16A085", "#3498DB", "#2980B9", "#8E44AD", "#DE3163", "#E74C3C", "#C0392B", "black", "white"];
 let selectedColor = "black";
 
 let selectedOpacity = 1;
@@ -65,23 +65,49 @@ randomColorSquare.style.display = "flex";
 randomColorSquare.style.alignItems = "center";
 randomColorSquare.style.justifyContent = "center"
 
+let isColorSelected = false;
 
 //color picker
 for (let square of colorSquareArr) {
     square.addEventListener("click", () => {
         selectedColor = square.style.backgroundColor;
         randomMode = false;
-    })   
-}
+
+        if (isColorSelected == false) {            
+            square.setAttribute("id", "previous-color");
+            square.textContent = "•";
+            square.style.textAlign = "center";
+            square.style.display = "flex";
+            square.style.alignItems = "center";
+            square.style.justifyContent = "center";
+            square.style.fontSize = "50px";
+            isColorSelected = true;
+        } else {
+            let previousColor = document.getElementById("previous-color");
+            previousColor.textContent = "";
+            previousColor.removeAttribute('id');
+
+            square.textContent = "•";
+            square.style.textAlign = "center";
+            square.style.display = "flex";
+            square.style.alignItems = "center";
+            square.style.justifyContent = "center";
+            square.style.fontSize = "50px";
+            square.setAttribute("id", "previous-color");
+        }
+                        
+    });   
+};
 
 randomColorSquare.addEventListener("click", () => {
     randomMode = true;
-})
+    
+});
 
 //opacity slider
 let colorOpacitySlider = document.querySelector("input[type='range']");
 let colorOpacityLevel = document.querySelector(".opacity-level");
-colorOpacityLevel.innerHTML = "100%"
+colorOpacityLevel.innerHTML = "100%";
 
 colorOpacitySlider.addEventListener("change", () => {
     selectedOpacity = Number(colorOpacitySlider.value) / 100;
